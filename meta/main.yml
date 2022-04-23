@@ -14,7 +14,7 @@ galaxy_info:
     - name: EL
       versions:
         - all
-    - name: opensuse
+    - name: Ubuntu
       versions:
         - all
     - name: Debian
