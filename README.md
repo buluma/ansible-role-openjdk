@@ -15,11 +15,10 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 - hosts: all
   remote_user: root
   become: true
-  tasks:
-    - name: include role
-      ansible.builtin.include_role:
-        name: buluma.openjdk
-      tags: openjdk
+
+  roles:
+    - role: buluma.bootstrap
+    - role: buluma.openjdk
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -29,6 +28,10 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
   remote_user: root
   become: true
   gather_facts: false
+
+  roles:
+    - role: buluma.bootstrap
+
   tasks:
     - name: redhat | subscription-manager register
       ansible.builtin.raw: |
@@ -37,30 +40,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
           --username={{ lookup('env', 'REDHAT_USERNAME') }} \
           --password={{ lookup('env', 'REDHAT_PASSWORD') }} \
           --auto-attach
-      changed_when: false
-      failed_when: false
-
-    - name: debian | apt-get install python3
-      ansible.builtin.raw: |
-        set -eu
-        apt-get update
-        DEBIAN_FRONTEND=noninteractive apt-get install -y python3
-      changed_when: false
-      failed_when: false
-
-    - name: redhat | yum install python3
-      ansible.builtin.raw: |
-        set -eu
-        yum makecache
-        yum install -y python3
-      changed_when: false
-      failed_when: false
-
-    - name: suse | zypper install python3
-      ansible.builtin.raw: |
-        set -eu
-        zypper -n --gpg-auto-import-keys refresh
-        zypper -n install -y python3
       changed_when: false
       failed_when: false
 
@@ -160,6 +139,7 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
+
 # OpenJDK release.
 openjdk_release: "17"
 
@@ -180,10 +160,17 @@ maven_download: "{{ _maven_download[maven_version] }}"
 
 - pip packages listed in [requirements.txt](https://github.com/buluma/ansible-role-openjdk/blob/main/requirements.txt).
 
+## [Status of used roles](#status-of-requirements)
+
+The following roles are used to prepare a system. You can prepare your system in another way.
+
+| Requirement | GitHub | GitLab |
+|-------------|--------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
-This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.co.ke/) for further information.
+This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
 
