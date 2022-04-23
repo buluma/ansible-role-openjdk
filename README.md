@@ -4,7 +4,7 @@ Ansible Role for OpenJDK Installation.
 
 |GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
 |------|------|-------|---------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-openjdk/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-openjdk/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-openjdk/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-openjdk)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/buluma/openjdk)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/buluma/openjdk)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/pulls/)|
+|[![github](https://github.com/buluma/ansible-role-openjdk/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-openjdk/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-openjdk/badges/master/pipeline.svg)](https://gitlab.com/buluma/ansible-role-openjdk)|[![quality](https://img.shields.io/ansible/quality/58928)](https://galaxy.ansible.com/buluma/openjdk)|[![downloads](https://img.shields.io/ansible/role/d/58928)](https://galaxy.ansible.com/buluma/openjdk)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -160,21 +160,6 @@ The machine needs to be prepared. In CI this is done using `molecule/default/pre
 The default values for the variables are set in `defaults/main.yml`:
 ```yaml
 ---
-
-# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # OpenJDK release.
 openjdk_release: "17"
 
