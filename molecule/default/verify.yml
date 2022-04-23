@@ -1,0 +1,26 @@
+---
+- hosts: all
+  remote_user: root
+  become: true
+  tasks:
+    - name: java -version
+      ansible.builtin.command: java -version
+      register: result
+      changed_when: result is not succeeded
+
+    - name: mvn --version
+      environment:
+        PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ansible.builtin.command: mvn --version
+      register: result
+      changed_when: result is not succeeded
+
+    - name: $JAVA_HOME/bin/java -version
+      ansible.builtin.shell: |
+        set -euxo pipefail
+        source /etc/profile.d/java.sh
+        $JAVA_HOME/bin/java -version
+      args:
+        executable: "/bin/bash"
+      register: result
+      changed_when: result is not succeeded
