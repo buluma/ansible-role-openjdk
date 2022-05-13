@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.4 to 1.0.5 [\#4](https://github.com/buluma/ansible-role-openjdk/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
 - bootstrap role [\#3](https://github.com/buluma/ansible-role-openjdk/pull/3) ([buluma](https://github.com/buluma))
 
 ## [0.1.1](https://github.com/buluma/ansible-role-openjdk/tree/0.1.1) (2022-04-23)
