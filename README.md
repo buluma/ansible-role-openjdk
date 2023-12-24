@@ -1,10 +1,10 @@
-# [Ansible role openjdk](#openjdk)
+# Ansible role [openjdk](https://galaxy.ansible.com/ui/standalone/roles/buluma/openjdk/documentation)
 
 Ansible Role for OpenJDK Installation.
 
-|GitHub|Version|Issues|Pull Requests|
-|------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-openjdk/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-openjdk/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/pulls/)|
+|GitHub|Version|Issues|Pull Requests|Downloads|
+|------|-------|------|-------------|---------|
+|[![github](https://github.com/buluma/ansible-role-openjdk/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-openjdk/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-openjdk.svg)](https://github.com/buluma/ansible-role-openjdk/pulls/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/openjdk)](https://galaxy.ansible.com/ui/standalone/roles/buluma/openjdk/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
