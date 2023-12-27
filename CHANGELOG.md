@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Update buluma/todo-to-issue-action@v1.0.1 @buluma [\#14](https://github.com/buluma/ansible-role-openjdk/issues/14)
 - add to tracker [\#2](https://github.com/buluma/ansible-role-openjdk/issues/2)
 - bootstrap this role [\#1](https://github.com/buluma/ansible-role-openjdk/issues/1)
 
