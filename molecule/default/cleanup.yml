@@ -1,11 +1,12 @@
 ---
 
-- hosts: all
+- name: Cleanup
+  hosts: all
   remote_user: root
   become: true
   gather_facts: false
   tasks:
-    - name: redhat | Subscription-manager unregister
+    - name: Redhat | Subscription-manager unregister
       ansible.builtin.raw: |
         set -eu
         subscription-manager remove --all
