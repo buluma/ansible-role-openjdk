@@ -53,7 +53,7 @@
         - "."
       skip: true
 
-- name: prepare directories
+- name: Prepare directories
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
@@ -114,7 +114,7 @@
   loop:
     - { dest: "/etc/profile.d/java.sh" }
 
-- name: prepare files
+- name: Prepare files
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
