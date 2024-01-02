@@ -6,6 +6,7 @@
 name: "Dependabot Merge"
 
 on:
+  pull_request:
   pull_request_target:
 
 permissions:
