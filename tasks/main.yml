@@ -49,6 +49,7 @@
     - { dest: "/etc/profile.d" }
     - { dest: "/usr/local/bin" }
     - { dest: "/usr/local/maven" }
+    - { dest: "/usr/local/maven/bin/mvn" }
 
 - name: Download archive
   ansible.builtin.shell: |
