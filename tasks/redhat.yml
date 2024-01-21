@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: redhat | rpm --import
+- name: redhat | Rpm --import
   ansible.builtin.rpm_key:
     key: "{{ item.key }}"
     fingerprint: "{{ item.fingerprint }}"
@@ -23,7 +23,7 @@
   register: result
   until: result is succeeded
 
-- name: redhat | yum-config-manager --add-repo
+- name: redhat | Yum-config-manager --add-repo
   ansible.builtin.yum_repository:
     file: "{{ item.file }}"
     name: "{{ item.name }}"
@@ -37,7 +37,7 @@
     state: "{{ item.state }}"
   loop: "{{ _yum_repository[openjdk_release] }}"
 
-- name: redhat | yum install
+- name: redhat | Yum install
   ansible.builtin.yum:
     name: "{{ item.name }}"
     state: "{{ item.state }}"

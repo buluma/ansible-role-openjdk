@@ -3,12 +3,12 @@
   remote_user: root
   become: true
   tasks:
-    - name: java -version
+    - name: Java -version
       ansible.builtin.command: java -version
       register: result
       changed_when: result is not succeeded
 
-    - name: mvn --version
+    - name: MVN --version
       environment:
         PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       ansible.builtin.command: mvn --version
