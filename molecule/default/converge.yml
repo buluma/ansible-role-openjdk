@@ -6,4 +6,5 @@
 
   roles:
     - role: buluma.bootstrap
+    - role: buluma.maven
     - role: ansible-role-openjdk

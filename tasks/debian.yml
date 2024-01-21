@@ -1,4 +1,5 @@
 ---
+
 - name: debian | Apt-key add
   ansible.builtin.apt_key:
     keyring: "{{ item.keyring }}"
