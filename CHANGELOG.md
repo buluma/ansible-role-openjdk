@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-openjdk/tree/HEAD)
+## [0.2.0](https://github.com/buluma/ansible-role-openjdk/tree/0.2.0) (2024-01-21)
 
-[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.1.1...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.1.1...0.2.0)
 
 **Closed issues:**
 
