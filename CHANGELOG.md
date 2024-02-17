@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-openjdk/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.2.0...HEAD)
+
+**Merged pull requests:**
+
+- Bump release-drafter/release-drafter from 5 to 6 [\#20](https://github.com/buluma/ansible-role-openjdk/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.2.0](https://github.com/buluma/ansible-role-openjdk/tree/0.2.0) (2024-01-21)
 
 [Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.1.1...0.2.0)
