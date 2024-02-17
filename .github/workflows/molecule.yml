@@ -59,12 +59,8 @@ jobs:
             tag: "8"
           - image: "enterpriselinux"
             tag: "latest"
-          - image: "docker-ubuntu-systemd"
+          - image: "docker-opensuse-systemd"
             tag: "latest"
-          - image: "docker-ubuntu-systemd"
-            tag: "focal"
-          - image: "docker-ubuntu-systemd"
-            tag: "bionic"
           - image: "debian-systemd"
             tag: "latest"
           - image: "debian-systemd"
@@ -81,7 +77,7 @@ jobs:
         with:
           path: "${{ github.repository }}"
       - name: Running Molecule Test
-        uses: buluma/molecule-action@v6.0.3
+        uses: buluma/molecule-action@v24.2.0
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}

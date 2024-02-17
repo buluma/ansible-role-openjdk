@@ -19,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   roles:
     - role: buluma.bootstrap
+    - role: buluma.maven
     - role: buluma.openjdk
 ```
 
@@ -35,101 +36,165 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
     - role: buluma.bootstrap
 
   tasks:
-    - name: redhat | subscription-manager register
+    - name: Redhat | subscription-manager register
       ansible.builtin.raw: |
         set -eu
         subscription-manager register \
-          --username={{ lookup('env', 'REDHAT_USERNAME') }} \
-          --password={{ lookup('env', 'REDHAT_PASSWORD') }} \
-          --auto-attach
+        --username={{ lookup('env', 'REDHAT_USERNAME') }} \
+        --password={{ lookup('env', 'REDHAT_PASSWORD') }} \
+        --auto-attach
+      args:
+        executable: "/bin/bash"
       changed_when: false
       failed_when: false
 
-- hosts: all
+    - name: Debian | apt-get install python3
+      ansible.builtin.raw: |
+        set -eu
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y python3
+      args:
+        executable: "/bin/bash"
+      changed_when: false
+      failed_when: false
+
+    - name: Redhat | yum install python3
+      ansible.builtin.raw: |
+        set -eu
+        yum makecache
+        yum install -y python3
+      args:
+        executable: "/bin/bash"
+      changed_when: false
+      failed_when: false
+
+    - name: Suse | zypper install python3
+      ansible.builtin.raw: |
+        set -eu
+        zypper -n --gpg-auto-import-keys refresh
+        zypper -n install -y python3
+      args:
+        executable: "/bin/bash"
+      changed_when: false
+      failed_when: false
+
+- name: prepare | all
+  hosts: all
   remote_user: root
   become: true
   tasks:
-    - name: cp -rfT /etc/skel /root
+    - name: Cp -rfT /etc/skel /root
       ansible.builtin.raw: |
         set -eu
         cp -rfT /etc/skel /root
+        rm -rf /root/.bash_logout
+      args:
+        executable: "/bin/bash"
       changed_when: false
       failed_when: false
 
-    - name: setenforce 0
+    - name: Setenforce 0
       ansible.builtin.raw: |
         set -eu
         setenforce 0
         sed -i 's/^SELINUX=.*$/SELINUX=permissive/g' /etc/selinux/config
+      args:
+        executable: "/bin/bash"
       changed_when: false
       failed_when: false
 
-    - name: systemctl stop firewalld.service
+    - name: Systemctl stop iptables.service
+      ansible.builtin.raw: |
+        set -eu
+        systemctl stop iptables.service
+        systemctl disable iptables.service
+      args:
+        executable: "/bin/bash"
+      changed_when: false
+      failed_when: false
+
+    - name: Systemctl stop firewalld.service
       ansible.builtin.raw: |
         set -eu
         systemctl stop firewalld.service
         systemctl disable firewalld.service
+      args:
+        executable: "/bin/bash"
       changed_when: false
       failed_when: false
 
-    - name: systemctl stop ufw.service
+    - name: Systemctl stop ufw.service
       ansible.builtin.raw: |
         set -eu
         systemctl stop ufw.service
         systemctl disable ufw.service
+      args:
+        executable: "/bin/bash"
       changed_when: false
       failed_when: false
 
-    - name: debian | apt-get install *.deb
+    - name: Debian | apt-get install *.deb
       ansible.builtin.raw: |
         set -eu
         DEBIAN_FRONTEND=noninteractive apt-get install -y bzip2 ca-certificates curl gcc gnupg gzip hostname iproute2 passwd procps python3 python3-apt python3-jmespath python3-lxml python3-pip python3-setuptools python3-venv python3-virtualenv python3-wheel rsync sudo tar unzip util-linux xz-utils zip
+      args:
+        executable: "/bin/bash"
       when: ansible_os_family | lower == "debian"
       changed_when: false
       failed_when: false
 
-    - name: fedora | yum install *.rpm
+    - name: Fedora | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      args:
+        executable: "/bin/bash"
       when: ansible_distribution | lower == "fedora"
       changed_when: false
       failed_when: false
 
-    - name: redhat-9 | yum install *.rpm
+    - name: Redhat-9 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum-config-manager --enable crb || echo $?
-        yum-config-manager --enable codeready-builder-beta-for-rhel-9-x86_64-rpms || echo $?
+        yum-config-manager --enable codeready-builder-for-rhel-9-x86_64-rpms || echo $?
         yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
         yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      args:
+        executable: "/bin/bash"
       when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "9"
       changed_when: false
       failed_when: false
 
-    - name: redhat-8 | yum install *.rpm
+    - name: Redhat-8 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
         yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-dnf-plugin-versionlock python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-utils zip
+      args:
+        executable: "/bin/bash"
       when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "8"
       changed_when: false
       failed_when: false
 
-    - name: redhat-7 | yum install *.rpm
+    - name: Redhat-7 | yum install *.rpm
       ansible.builtin.raw: |
         set -eu
         subscription-manager repos --enable=rhel-7-server-optional-rpms || echo $?
         yum install -y http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
         yum install -y bzip2 ca-certificates curl gcc gnupg2 gzip hostname iproute procps-ng python3 python3-jmespath python3-libselinux python3-lxml python3-pip python3-setuptools python3-virtualenv python3-wheel rsync shadow-utils sudo tar unzip util-linux xz yum-plugin-versionlock yum-utils zip
+      args:
+        executable: "/bin/bash"
       when: ansible_os_family | lower == "redhat" and ansible_distribution_major_version | lower == "7"
       changed_when: false
       failed_when: false
 
-    - name: suse | zypper -n install *.rpm
+    - name: Suse | zypper -n install *.rpm
       ansible.builtin.raw: |
         set -eu
         zypper -n install -y bzip2 ca-certificates curl gcc gpg2 gzip hostname iproute2 procps python3 python3-jmespath python3-lxml python3-pip python3-setuptools python3-virtualenv python3-wheel rsync shadow sudo tar unzip util-linux xz zip
+      args:
+        executable: "/bin/bash"
       when: ansible_os_family | lower == "suse"
       changed_when: false
       failed_when: false
@@ -149,15 +214,6 @@ openjdk_release: "17"
 
 # Specify JAVA_HOME.
 openjdk_home: "{{ _openjdk_home[openjdk_release] }}"
-
-# Maven release.
-maven_release: "3.8"
-
-# Maven version.
-maven_version: "{{ _maven_version[maven_release] }}"
-
-# Maven download details.
-maven_download: "{{ _maven_download[maven_version] }}"
 ```
 
 ## [Requirements](#requirements)
@@ -171,6 +227,7 @@ The following roles are used to prepare a system. You can prepare your system in
 | Requirement | GitHub | Version |
 |-------------|--------|--------|
 |[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Ansible Molecule](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-bootstrap.svg)](https://github.com/shadowwalker/ansible-role-bootstrap)|
+|[buluma.maven](https://galaxy.ansible.com/buluma/maven)|[![Ansible Molecule](https://github.com/buluma/ansible-role-maven/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-maven/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-maven.svg)](https://github.com/shadowwalker/ansible-role-maven)|
 
 ## [Context](#context)
 
@@ -188,7 +245,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |---------|----|
 |[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|all|
 |[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|all|
+|[opensuse](https://hub.docker.com/repository/docker/buluma/opensuse/general)|all|
 |[Debian](https://hub.docker.com/repository/docker/buluma/debian/general)|all|
 |[Fedora](https://hub.docker.com/repository/docker/buluma/fedora/general)|all|
 
