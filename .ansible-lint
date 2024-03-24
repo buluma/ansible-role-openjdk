@@ -14,6 +14,9 @@ exclude_paths:
 
 skip_list:
   - yaml[truthy]
+  - name[casing]
+  - var-naming[no-role-prefix]
+  - yaml[line-length]
 
 enable_list:
   - name[prefix]

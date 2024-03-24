@@ -1,5 +1,4 @@
 ---
-
 # Copyright 2024 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: redhat | Rpm --import
+- name: rpm --import
   ansible.builtin.rpm_key:
     key: "{{ item.key }}"
     fingerprint: "{{ item.fingerprint }}"
@@ -23,7 +22,7 @@
   register: result
   until: result is succeeded
 
-- name: redhat | Yum-config-manager --add-repo
+- name: yum-config-manager --add-repo
   ansible.builtin.yum_repository:
     file: "{{ item.file }}"
     name: "{{ item.name }}"
@@ -37,7 +36,7 @@
     state: "{{ item.state }}"
   loop: "{{ _yum_repository[openjdk_release] }}"
 
-- name: redhat | Yum install
+- name: yum install
   ansible.builtin.yum:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
