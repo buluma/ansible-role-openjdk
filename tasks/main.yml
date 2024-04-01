@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: include default variables
+- name: Include default variables
   ansible.builtin.include_vars: ../vars/main.yml
 
 - name: include release specific variables
@@ -34,7 +34,7 @@
         - ../vars
       skip: true
 
-- name: include release specific tasks
+- name: Include release specific tasks
   ansible.builtin.include_tasks: "{{ _loop_var }}"
   loop: "{{ query('first_found', _params) }}"
   loop_control:
@@ -52,7 +52,7 @@
         - .
       skip: true
 
-- name: prepare directories
+- name: Prepare directories
   ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
@@ -62,7 +62,7 @@
   loop:
     - { dest: /etc/profile.d }
 
-- name: copy templates
+- name: Copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
