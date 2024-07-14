@@ -23,7 +23,9 @@ galaxy_info:
         - all
     - name: Fedora
       versions:
-        - all
+        - "38"
+        - "39"
+        - "40"
   galaxy_tags:
     - system
 dependencies: []
