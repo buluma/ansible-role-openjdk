@@ -23,7 +23,7 @@
   loop: "{{ _yum_repository[openjdk_release] }}"
 
 - name: redhat | Yum install
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   loop: "{{ _yum[openjdk_release] }}"
