@@ -53,8 +53,6 @@ jobs:
           - image: "docker-molecule-images"
             tag: "jammy"
           - image: "docker-molecule-images"
-            tag: "lunar"
-          - image: "docker-molecule-images"
             tag: "noble"
           - image: "enterpriselinux"
             tag: "8"
@@ -82,8 +80,6 @@ jobs:
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
-      - name: Running Role Test
-        run: ansible-galaxy role import --api-key ${{ secrets.galaxy_api_key }} buluma ${{ github.event.repository.name }}
 
   dependabot:
     needs:
