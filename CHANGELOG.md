@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/24.3.31...HEAD)
 
+**Closed issues:**
+
+- rebuild action [\#12](https://github.com/buluma/ansible-role-openjdk/issues/12)
+
 **Merged pull requests:**
 
 - Bump buluma/dependabot-auto-merge-action from 2.1.2 to 2.1.3 [\#25](https://github.com/buluma/ansible-role-openjdk/pull/25) ([dependabot[bot]](https://github.com/apps/dependabot))
