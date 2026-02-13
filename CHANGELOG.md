@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Update action [\#13](https://github.com/buluma/ansible-role-openjdk/issues/13)
 - rebuild action [\#12](https://github.com/buluma/ansible-role-openjdk/issues/12)
 
 **Merged pull requests:**
