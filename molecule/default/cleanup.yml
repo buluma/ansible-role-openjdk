@@ -1,16 +1,16 @@
 ---
-  - name: Cleanup
-    hosts: all
-    remote_user: root
-    become: true
-    gather_facts: false
-    tasks:
-      - name: Redhat | Subscription-manager unregister
-        ansible.builtin.raw: |
-          set -eu
-          subscription-manager remove --all
-          subscription-manager unregister
-          subscription-manager clean
-        when: inventory_hostname != ansible_host
-        changed_when: false
-        failed_when: false
+- name: Cleanup
+  hosts: all
+  remote_user: root
+  become: true
+  gather_facts: false
+  tasks:
+  - name: Redhat | Subscription-manager unregister
+    ansible.builtin.raw: |
+      set -eu
+      subscription-manager remove --all
+      subscription-manager unregister
+      subscription-manager clean
+    when: inventory_hostname != ansible_host
+    changed_when: false
+    failed_when: false

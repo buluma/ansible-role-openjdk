@@ -1,9 +1,9 @@
 ---
-  - hosts: all
-    remote_user: root
-    become: true
+- hosts: all
+  remote_user: root
+  become: true
 
-    roles:
-      - role: buluma.bootstrap
-      - role: buluma.maven
-      - role: buluma.openjdk
+  roles:
+  - role: buluma.bootstrap
+  - role: buluma.maven
+  - role: buluma.openjdk
