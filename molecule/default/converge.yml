@@ -4,6 +4,6 @@
   become: true
 
   roles:
-  - role: buluma.bootstrap
-  - role: buluma.maven
-  - role: buluma.openjdk
+    - role: buluma.bootstrap
+    - role: buluma.maven
+    - role: buluma.openjdk
