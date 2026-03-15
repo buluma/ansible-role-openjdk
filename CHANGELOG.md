@@ -17,10 +17,6 @@
 
 [Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.2.0...24.3.31)
 
-**Merged pull requests:**
-
-- Bump release-drafter/release-drafter from 5 to 6 [\#20](https://github.com/buluma/ansible-role-openjdk/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
-
 ## [0.2.0](https://github.com/buluma/ansible-role-openjdk/tree/0.2.0) (2024-01-21)
 
 [Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/0.1.1...0.2.0)
@@ -33,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Bump release-drafter/release-drafter from 5 to 6 [\#20](https://github.com/buluma/ansible-role-openjdk/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump actions/checkout from 3 to 4 [\#16](https://github.com/buluma/ansible-role-openjdk/pull/16) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.5 to 1.0.8 [\#15](https://github.com/buluma/ansible-role-openjdk/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump buluma/gitlab-mirror-ci-action from 1.0.6 to 1.0.7 [\#11](https://github.com/buluma/ansible-role-openjdk/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
