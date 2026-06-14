@@ -1,0 +1,6 @@
+---
+# OpenJDK release.
+openjdk_release: "17"
+
+# Specify JAVA_HOME.
+openjdk_home: "{{ _openjdk_home[openjdk_release] }}"
