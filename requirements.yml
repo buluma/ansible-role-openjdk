@@ -3,7 +3,7 @@ roles:
   - name: buluma.bootstrap
   - name: buluma.maven
 
-collections: []
+collections:
   - name: community.general
   - name: operator_sdk.util
     src: https://galaxy.ansible.com
