@@ -16,7 +16,7 @@
 - name: debian | Download Apt keys
   ansible.builtin.get_url:
     url: "{{ item.url }}"
-    dest: "{{ item.keyring | replace('.gpg', '.asc') }}"
+    dest: "{{ item.keyring | regex_replace('\\.gpg$', '.asc') }}"
     mode: "0644"
   loop: "{{ _apt_key[openjdk_release] }}"
   register: result
