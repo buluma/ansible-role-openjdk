@@ -65,7 +65,7 @@
       changed_when: false
       failed_when: false
 
-- name: prepare | all
+- name: Prepare | all
   hosts: all
   remote_user: root
   become: true
