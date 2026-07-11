@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-openjdk/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/26.6.1...HEAD)
+
+**Closed issues:**
+
+- Pinning due to CVE-2024-3094 [\#32](https://github.com/buluma/ansible-role-openjdk/issues/32)
+
 ## [26.6.1](https://github.com/buluma/ansible-role-openjdk/tree/26.6.1) (2026-06-15)
 
 [Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/26.6.0...26.6.1)
