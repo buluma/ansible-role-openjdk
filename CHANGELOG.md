@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-openjdk/tree/HEAD)
+## [26.6.2](https://github.com/buluma/ansible-role-openjdk/tree/26.6.2) (2026-07-23)
 
-[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/26.6.1...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-openjdk/compare/26.6.1...26.6.2)
 
 **Closed issues:**
 
