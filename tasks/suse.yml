@@ -33,5 +33,6 @@
     state: "{{ item.state }}"
     force_resolution: true
   loop: "{{ _zypper[openjdk_release] }}"
+  when: item.name != 'maven' or openjdk_install_maven
   register: result
   until: result is succeeded

@@ -90,6 +90,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # OpenJDK release.
 openjdk_release: "17"
 
+# Install Maven from the distribution package repositories.
+openjdk_install_maven: true
+
 # Specify JAVA_HOME.
 openjdk_home: "{{ _openjdk_home[openjdk_release] }}"
 ```

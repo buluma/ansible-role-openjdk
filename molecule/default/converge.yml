@@ -22,3 +22,7 @@
     - role: buluma.bootstrap
     - role: buluma.maven
     - role: buluma.openjdk
+      vars:
+        # Maven is already installed by buluma.maven; avoid installing the
+        # duplicate package from the test image's incompatible EL9 RPM repo.
+        openjdk_install_maven: false
