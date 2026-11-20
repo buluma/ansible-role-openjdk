@@ -34,7 +34,8 @@
 # item.repo is a one-line "deb [options] URI SUITE [COMPONENT...]" string,
 # split here into the parts deb822_repository needs. The key of a repository
 # is the entry of _apt_key at the same position, and is fetched from its URL.
-- name: debian | Apt-add-repository
+# The noqa is there because ansible-lint can't validate the templated types.
+- name: debian | Apt-add-repository  # noqa: args[module]
   ansible.builtin.deb822_repository:
     name: "{{ item.filename | regex_replace('[^A-Za-z0-9_-]+', '_') }}"
     types: "{{ _openjdk_repo_types }}"
