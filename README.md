@@ -124,10 +124,12 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|10, 9|
-|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|10, 9, 8|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|13, 12|
 |[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|44, 43|
 |[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+
+Debian 11, Ubuntu 23.10, Fedora 38/39 and SUSE 15.5 are rejected because their configured OpenSUSE Build Service repositories are no longer available.
 
 The minimum version of Ansible required is 2.19, tests have been done on:
 

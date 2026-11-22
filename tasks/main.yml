@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Check platform repository availability
+  ansible.builtin.import_tasks: check-platform.yml
+
 - name: Include default variables
   ansible.builtin.include_vars: ../vars/main.yml
 

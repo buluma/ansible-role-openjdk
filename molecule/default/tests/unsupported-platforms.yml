@@ -1,0 +1,30 @@
+---
+- name: Verify unsupported repository platforms
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Check unavailable repository mappings are rejected
+      ansible.builtin.include_tasks: check-unsupported-platform.yml
+      loop:
+        - { distribution: Debian, version: '11', family: Debian }
+        - { distribution: Ubuntu, version: '23.10', family: Debian }
+        - { distribution: Fedora, version: '38', family: RedHat }
+        - { distribution: Fedora, version: '39', family: RedHat }
+        - { distribution: openSUSE Leap, version: '15.5', family: Suse }
+      loop_control:
+        loop_var: platform
+    - name: Check supported repository platforms are accepted
+      ansible.builtin.include_tasks: ../../../tasks/check-platform.yml
+      vars:
+        ansible_facts:
+          distribution: "{{ platform.distribution }}"
+          distribution_version: "{{ platform.version }}"
+          distribution_major_version: "{{ platform.version.split('.')[0] }}"
+          os_family: "{{ platform.family }}"
+      loop:
+        - { distribution: Debian, version: '12', family: Debian }
+        - { distribution: Ubuntu, version: '22.04', family: Debian }
+        - { distribution: Fedora, version: '44', family: RedHat }
+        - { distribution: AlmaLinux, version: '8', family: RedHat }
+      loop_control:
+        loop_var: platform
