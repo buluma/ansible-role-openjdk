@@ -25,3 +25,6 @@
         executable: "/bin/bash"
       register: result
       changed_when: result is not succeeded
+
+- name: Verify unsupported platform handling
+  ansible.builtin.import_playbook: tests/unsupported-platforms.yml

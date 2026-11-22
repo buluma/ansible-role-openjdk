@@ -6,6 +6,7 @@ platforms:
     versions:
       - "10"
       - "9"
+      - "8"
   - name: Debian
     versions:
       # Excludes 11: the third-party home:alvistack OBS repo (used for

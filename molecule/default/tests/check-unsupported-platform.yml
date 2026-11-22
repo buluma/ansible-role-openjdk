@@ -1,0 +1,19 @@
+---
+- name: tests | check-unsupported-platform | Test platform rejection
+  block:
+    - name: tests | check-unsupported-platform | Run platform check
+      ansible.builtin.include_tasks: ../../../tasks/check-platform.yml
+      vars:
+        ansible_facts:
+          distribution: "{{ platform.distribution }}"
+          distribution_version: "{{ platform.version }}"
+          distribution_major_version: "{{ platform.version.split('.')[0] }}"
+          os_family: "{{ platform.family }}"
+    - name: tests | check-unsupported-platform | Fail if unavailable platform was accepted
+      ansible.builtin.fail:
+        msg: "Unavailable platform {{ platform }} was accepted"
+  rescue:
+    - name: tests | check-unsupported-platform | Confirm rejection explains repository unavailability
+      ansible.builtin.assert:
+        that:
+          - "'OpenJDK repository is unavailable' in ansible_failed_result.msg"
