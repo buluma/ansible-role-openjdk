@@ -102,6 +102,23 @@
           key with fingerprint {{ _openjdk_rpm_key.fingerprint }}, refusing to import it.
         quiet: true
 
+    - name: rpm-key | Create verified key directory
+      ansible.builtin.file:
+        path: /etc/openjdk/rpm-keys
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: rpm-key | Install verified key for repository use
+      ansible.builtin.copy:
+        src: "{{ _openjdk_rpm_key_dir.path }}/verified.asc"
+        dest: "/etc/openjdk/rpm-keys/{{ _openjdk_rpm_key.fingerprint | upper }}.asc"
+        remote_src: true
+        owner: root
+        group: root
+        mode: "0644"
+
     - name: rpm-key | Rpm --import
       ansible.builtin.rpm_key:
         key: "{{ _openjdk_rpm_key_dir.path }}/verified.asc"

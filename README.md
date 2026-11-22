@@ -131,6 +131,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 Debian 11, Ubuntu 23.10, Fedora 38/39 and SUSE 15.5 are rejected because their configured OpenSUSE Build Service repositories are no longer available.
 
+On RPM platforms, repository key files are installed locally only after fingerprint verification. A signing key rotation requires updating the pinned fingerprint before the new key can be trusted.
+
 The minimum version of Ansible required is 2.19, tests have been done on:
 
 - The previous version.

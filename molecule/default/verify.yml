@@ -28,3 +28,44 @@
 
 - name: Verify unsupported platform handling
   ansible.builtin.import_playbook: tests/unsupported-platforms.yml
+
+- name: Verify RPM repository signing keys
+  hosts: all
+  become: true
+  tasks:
+    - name: Read configured RPM repositories
+      when: ansible_facts['os_family'] == 'RedHat'
+      ansible.builtin.slurp:
+        src: "/etc/yum.repos.d/{{ item }}.repo"
+      loop:
+        - home:alvistack
+        - adoptium
+      register: openjdk_repo_files
+
+    - name: Check repository keys point to verified local files
+      when: ansible_facts['os_family'] == 'RedHat'
+      ansible.builtin.assert:
+        that:
+          - "'gpgkey = file:///etc/openjdk/rpm-keys/' in (item.content | b64decode)"
+      loop: "{{ openjdk_repo_files.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+
+    - name: Check verified RPM keys exist
+      when: ansible_facts['os_family'] == 'RedHat'
+      ansible.builtin.stat:
+        path: "/etc/openjdk/rpm-keys/{{ item }}.asc"
+      loop:
+        - 789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD
+        - 3B04D753C9050D9A5D343F39843C48A565F8F04B
+      register: openjdk_key_files
+
+    - name: Verify local RPM key files
+      when: ansible_facts['os_family'] == 'RedHat'
+      ansible.builtin.assert:
+        that:
+          - item.stat.exists
+          - item.stat.mode == '0644'
+      loop: "{{ openjdk_key_files.results }}"
+      loop_control:
+        label: "{{ item.item }}"

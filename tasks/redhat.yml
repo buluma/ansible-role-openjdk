@@ -32,7 +32,7 @@
     priority: "{{ item.priority }}"
     module_hotfixes: "{{ item.module_hotfixes }}"
     gpgcheck: "{{ item.gpgcheck }}"
-    gpgkey: "{{ item.gpgkey }}"
+    gpgkey: "{{ 'file:///etc/openjdk/rpm-keys/' ~ (_rpm_key[openjdk_release] | selectattr('key', 'equalto', item.gpgkey) | selectattr('state', 'equalto', 'present') | first).fingerprint | upper ~ '.asc' if item.state == 'present' else omit }}"
     state: "{{ item.state }}"
   loop: "{{ _yum_repository[openjdk_release] }}"
 
