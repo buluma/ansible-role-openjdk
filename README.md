@@ -35,6 +35,10 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - role: buluma.bootstrap
     - role: buluma.maven
     - role: buluma.openjdk
+      vars:
+        # Maven is already installed by buluma.maven; avoid installing the
+        # duplicate package from the test image's incompatible EL9 RPM repo.
+        openjdk_install_maven: false
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-openjdk/blob/master/molecule/default/prepare.yml):
@@ -128,10 +132,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|13, 12|
 |[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|44, 43|
 |[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
-
-Debian 11, Ubuntu 23.10, Fedora 38/39 and SUSE 15.5 are rejected because their configured OpenSUSE Build Service repositories are no longer available.
-
-On RPM platforms, repository key files are installed locally only after fingerprint verification. A signing key rotation requires updating the pinned fingerprint before the new key can be trusted.
 
 The minimum version of Ansible required is 2.19, tests have been done on:
 
